@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PageModel;
+use App\Models\ServiceModel;
 use App\Models\SettingModel;
 
 class BankingController extends BaseController
@@ -10,6 +11,7 @@ class BankingController extends BaseController
     public function index()
     {
         $pageModel    = new PageModel();
+        $serviceModel = new ServiceModel();
         $settingModel = new SettingModel();
 
         $page = $pageModel->getBySlug('banking');
@@ -20,6 +22,7 @@ class BankingController extends BaseController
 
         $data = [
             'page'     => $page,
+            'services' => $serviceModel->getActiveByCategory('banking'),
             'settings' => $settingModel->getAllAsKeyValue(),
             'title'    => $page['title'],
         ];

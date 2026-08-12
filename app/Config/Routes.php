@@ -83,9 +83,20 @@ $routes->group('admin', ['filter' => 'auth'], static function ($routes) {
     $routes->get('pages/edit/(:num)', 'Admin\PageAdminController::edit/$1');
     $routes->post('pages/update/(:num)', 'Admin\PageAdminController::update/$1');
 
-    // Account Services & Banking landing page shortcuts
-    $routes->get('account-services', 'Admin\PageAdminController::editBySlug/accounts');
-    $routes->get('banking-services', 'Admin\PageAdminController::editBySlug/banking');
+    // Account Services CRUD (cards shown on the public /accounts page)
+    $routes->get('account-services', 'Admin\ServiceAdminController::index/account');
+    $routes->get('account-services/create', 'Admin\ServiceAdminController::create/account');
+    $routes->post('account-services/store', 'Admin\ServiceAdminController::store/account');
+
+    // Banking Services CRUD (cards shown on the public /banking page)
+    $routes->get('banking-services', 'Admin\ServiceAdminController::index/banking');
+    $routes->get('banking-services/create', 'Admin\ServiceAdminController::create/banking');
+    $routes->post('banking-services/store', 'Admin\ServiceAdminController::store/banking');
+
+    // Shared edit/update/delete (category is looked up from the record)
+    $routes->get('services/edit/(:num)', 'Admin\ServiceAdminController::edit/$1');
+    $routes->post('services/update/(:num)', 'Admin\ServiceAdminController::update/$1');
+    $routes->get('services/delete/(:num)', 'Admin\ServiceAdminController::delete/$1');
 
     // Enquiries
     $routes->get('enquiries', 'Admin\EnquiryAdminController::index');
