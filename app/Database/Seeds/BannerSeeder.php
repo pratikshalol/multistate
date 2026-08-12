@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Database\Seeds;
 
@@ -50,3 +50,4 @@ class BannerSeeder extends Seeder
         $this->db->table('banners')->insertBatch($data);
     }
 }
+

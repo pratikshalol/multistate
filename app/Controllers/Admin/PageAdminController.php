@@ -17,6 +17,32 @@ class PageAdminController extends BaseController
         return view('admin/pages/list', $data);
     }
 
+    public function editBySlug($slug)
+    {
+        $model = new PageModel();
+        $page  = $model->getBySlug($slug);
+
+        if (!$page) {
+            return redirect()->to('/admin/pages')->with('error', 'Page not found.');
+        }
+
+        // For certain front-facing pages, show a clean preview instead
+        // of the full HTML editor (remove meta / raw HTML fields).
+        if (in_array($slug, ['accounts', 'banking'])) {
+            $data = [
+                'title' => 'Preview Page: ' . $page['title'],
+                'page'  => $page,
+            ];
+            return view('admin/pages/preview', $data);
+        }
+
+        $data = [
+            'title' => 'Edit Page: ' . $page['title'],
+            'page'  => $page,
+        ];
+        return view('admin/pages/form', $data);
+    }
+
     public function edit($id)
     {
         $model = new PageModel();

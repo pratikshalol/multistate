@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Database\Seeds;
 
@@ -10,7 +10,7 @@ class AdminUserSeeder extends Seeder
     {
         $data = [
             'name'       => 'Super Administrator',
-            'email'      => 'admin@Samarthmultistate.com',
+            'email'      => 'admin@sainathmultistate.com',
             'password'   => password_hash('Admin@123', PASSWORD_DEFAULT),
             'role'       => 'super_admin',
             'created_at' => date('Y-m-d H:i:s'),

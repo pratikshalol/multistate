@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Database\Seeds;
 
@@ -41,3 +41,4 @@ class TestimonialSeeder extends Seeder
         $this->db->table('testimonials')->insertBatch($data);
     }
 }
+

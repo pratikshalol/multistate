@@ -9,6 +9,9 @@ use CodeIgniter\Router\RouteCollection;
 // Public Routes
 $routes->get('/', 'Home::index');
 
+$routes->get('/accounts', 'AccountsController::index');
+$routes->get('/banking', 'BankingController::index');
+
 $routes->get('/deposits', 'DepositController::index');
 $routes->get('/deposits/(:segment)', 'DepositController::show/$1');
 
@@ -79,6 +82,10 @@ $routes->group('admin', ['filter' => 'auth'], static function ($routes) {
     $routes->get('pages', 'Admin\PageAdminController::index');
     $routes->get('pages/edit/(:num)', 'Admin\PageAdminController::edit/$1');
     $routes->post('pages/update/(:num)', 'Admin\PageAdminController::update/$1');
+
+    // Account Services & Banking landing page shortcuts
+    $routes->get('account-services', 'Admin\PageAdminController::editBySlug/accounts');
+    $routes->get('banking-services', 'Admin\PageAdminController::editBySlug/banking');
 
     // Enquiries
     $routes->get('enquiries', 'Admin\EnquiryAdminController::index');

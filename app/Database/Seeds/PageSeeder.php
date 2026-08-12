@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Database\Seeds;
 
@@ -60,5 +60,40 @@ class PageSeeder extends Seeder
         ];
 
         $this->db->table('pages')->insertBatch($data);
+
+        // Insert additional pages (only if not already present)
+        $extra = [
+            [
+                'slug'             => 'savings-account',
+                'title'            => 'Savings Account',
+                'content'          => '<h2>Savings Account — Secure & Rewarding</h2><p>A Savings Account with Samarth Multistate Co-operative Credit Society is the perfect way to start your financial journey. Earn attractive interest on your idle funds while keeping your money safe and accessible at all times.</p><h3>Key Features</h3><ul><li>Competitive interest rate on daily balance</li><li>Free passbook, e-statement, and SMS alerts</li><li>Mobile Banking App access</li><li>Doorstep deposit collection available</li><li>Nomination facility</li></ul><h3>Documents Required</h3><ul><li>Aadhaar Card / PAN Card</li><li>Passport-size photograph</li><li>Address proof</li></ul><p><a href="/account-opening" style="color:#2563eb;font-weight:bold;">Apply Online Here</a></p>',
+                'meta_title'       => 'Savings Account - Samarth Multistate',
+                'meta_description' => 'Open a Savings Account with Samarth Multistate and earn attractive interest on your deposits.',
+                'updated_at'       => date('Y-m-d H:i:s'),
+            ],
+            [
+                'slug'             => 'current-account',
+                'title'            => 'Current Account',
+                'content'          => '<h2>Current Account — Built for Business</h2><p>Samarth Multistate\'s Current Account is designed for traders, merchants, and businesses requiring frequent transactions and higher liquidity.</p><h3>Key Features</h3><ul><li>Unlimited transactions — deposits and withdrawals</li><li>Overdraft facility available</li><li>NEFT / RTGS / IMPS transfers</li><li>Cheque book facility</li><li>UPI and QR code payment acceptance</li></ul><h3>Documents Required</h3><ul><li>PAN Card (mandatory)</li><li>Business registration / GST certificate</li><li>Aadhaar of all signatories</li></ul><p><a href="/account-opening" style="color:#2563eb;font-weight:bold;">Apply Online Here</a></p>',
+                'meta_title'       => 'Current Account - Samarth Multistate',
+                'meta_description' => 'Open a Current Account with Samarth Multistate for unlimited business transactions and overdraft facilities.',
+                'updated_at'       => date('Y-m-d H:i:s'),
+            ],
+            [
+                'slug'             => 'career',
+                'title'            => 'Career Opportunities',
+                'content'          => '<h2>Build Your Career with Samarth Multistate</h2><p>We are always looking for passionate, dedicated individuals to join our growing team across Maharashtra.</p><h3>Current Openings</h3><ul><li><strong>Branch Manager</strong> — MBA/B.Com with 3+ years banking experience</li><li><strong>Loan Officer</strong> — Graduate with credit appraisal knowledge</li><li><strong>Field Agent (Pigmy Collection)</strong> — 10th pass, local area knowledge</li><li><strong>Customer Service Executive</strong> — Graduate, good communication skills</li><li><strong>IT / Software Executive</strong> — B.E./BCA with development skills</li></ul><h3>How to Apply</h3><p>Email your resume to: <strong>careers@samarthmultistate.com</strong> or <a href="/contact" style="color:#2563eb;font-weight:bold;">submit an enquiry here</a>.</p>',
+                'meta_title'       => 'Career Opportunities - Samarth Multistate',
+                'meta_description' => 'Explore career opportunities at Samarth Multistate Co-operative Credit Society across Maharashtra.',
+                'updated_at'       => date('Y-m-d H:i:s'),
+            ],
+        ];
+
+        foreach ($extra as $page) {
+            $exists = $this->db->table('pages')->where('slug', $page['slug'])->countAllResults();
+            if (!$exists) {
+                $this->db->table('pages')->insert($page);
+            }
+        }
     }
 }

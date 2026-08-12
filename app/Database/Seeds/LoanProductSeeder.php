@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace App\Database\Seeds;
 
@@ -74,3 +74,4 @@ class LoanProductSeeder extends Seeder
         $this->db->table('loan_products')->insertBatch($data);
     }
 }
+

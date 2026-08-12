@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,7 +33,7 @@
 
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Admin Email Address</label>
-                <input type="email" name="email" required value="<?= old('email', 'admin@Samarthmultistate.com') ?>" placeholder="admin@Samarthmultistate.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-slate-900 focus:outline-none">
+                <input type="email" name="email" required value="<?= old('email', 'admin@sainathmultistate.com') ?>" placeholder="admin@sainathmultistate.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-slate-900 focus:outline-none">
             </div>
 
             <div>
@@ -48,7 +48,7 @@
 
         <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center text-[11px] text-slate-500 space-y-0.5">
             <p class="font-bold text-slate-700">Seeded Credentials for Quick Access:</p>
-            <p>Email: <code class="bg-slate-200 px-1 py-0.5 rounded text-slate-800">admin@Samarthmultistate.com</code></p>
+            <p>Email: <code class="bg-slate-200 px-1 py-0.5 rounded text-slate-800">admin@sainathmultistate.com</code></p>
             <p>Password: <code class="bg-slate-200 px-1 py-0.5 rounded text-slate-800">Admin@123</code></p>
         </div>
 

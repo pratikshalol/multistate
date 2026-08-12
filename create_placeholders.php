@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // create_placeholders.php
 
 $dirs = [
@@ -35,7 +35,7 @@ SVG;
 // Banners
 makeSvgImage('public/uploads/banners/hero_deposit_graphic.png', '10.50% Fixed Deposit', 'High Returns & Security', '#0f2942', '#ffffff', 600, 450, '💰');
 makeSvgImage('public/uploads/banners/hero_gold_loan.png', 'Instant Gold Loan', 'Sanctioned in 15 Mins', '#78350f', '#ffffff', 600, 450, '👑');
-makeSvgImage('public/uploads/banners/hero_mobile_banking.png', 'Samarth Mobile Banking', '24x7 Digital Access', '#047857', '#ffffff', 600, 450, '📱');
+makeSvgImage('public/uploads/banners/hero_mobile_banking.png', 'Sainath Mobile Banking', '24x7 Digital Access', '#047857', '#ffffff', 600, 450, '📱');
 
 // Deposits
 makeSvgImage('public/uploads/deposits/fixed_deposit.jpg', 'Fixed Deposit (FD)', 'Up to 10.50% p.a.', '#1e3a8a', '#ffffff', 500, 350, '📈');
@@ -60,7 +60,7 @@ $logoSvg = <<<SVG
   <rect width="100%" height="100%" fill="transparent"/>
   <circle cx="35" cy="35" r="24" fill="#0f2942"/>
   <path d="M 23,45 L 35,20 L 47,45 Z" fill="#d97706"/>
-  <text x="70" y="32" font-family="system-ui, sans-serif" font-size="18" font-weight="900" fill="#0f2942">Samarth MULTISTATE</text>
+  <text x="70" y="32" font-family="system-ui, sans-serif" font-size="18" font-weight="900" fill="#0f2942">SAINATH MULTISTATE</text>
   <text x="70" y="48" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#d97706" letter-spacing="1">CO-OPERATIVE CREDIT SOCIETY LTD.</text>
 </svg>
 SVG;

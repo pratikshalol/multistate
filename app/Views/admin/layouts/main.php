@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -38,6 +38,12 @@
             </a>
             <a href="<?= base_url('admin/loans') ?>" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors">
                 <span>🤝</span><span>Loan Products</span>
+            </a>
+            <a href="<?= base_url('admin/account-services') ?>" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors">
+                <span>🏧</span><span>Account Services</span>
+            </a>
+            <a href="<?= base_url('admin/banking-services') ?>" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors">
+                <span>📱</span><span>Banking Services</span>
             </a>
             <a href="<?= base_url('admin/branches') ?>" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors">
                 <span>🏦</span><span>Branch Locations</span>

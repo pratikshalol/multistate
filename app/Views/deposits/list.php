@@ -1,10 +1,10 @@
-﻿<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
 <div class="bg-brand-700 text-white py-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
         <h1 class="text-3xl md:text-4xl font-extrabold">High Return Deposit Schemes</h1>
-        <p class="text-slate-300 text-sm max-w-2xl mx-auto">Secure your capital and earn attractive interest rates with Samarth Multistate guaranteed deposit plans.</p>
+            <p class="text-slate-500 text-sm max-w-xl mx-auto">Secure your capital and earn attractive interest rates with Samarth Multistate guaranteed deposit plans.</p>
     </div>
 </div>
 

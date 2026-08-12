@@ -1,4 +1,4 @@
-﻿<?= $this->extend('admin/layouts/main') ?>
+<?= $this->extend('admin/layouts/main') ?>
 
 <?= $this->section('content') ?>
 
@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <label class="block font-bold text-slate-700 uppercase mb-1">Branch Email Address</label>
-                    <input type="email" name="email" value="<?= old('email', $branch['email'] ?? '') ?>" placeholder="headoffice@Samarthmultistate.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:outline-none">
+                    <input type="email" name="email" value="<?= old('email', $branch['email'] ?? '') ?>" placeholder="headoffice@sainathmultistate.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:outline-none">
                 </div>
             </div>
 

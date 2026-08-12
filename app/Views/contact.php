@@ -1,4 +1,4 @@
-﻿<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
 <div class="bg-brand-700 text-white py-12">
@@ -81,7 +81,7 @@
                     </p>
                     <p class="flex items-center space-x-2">
                         <span>✉️</span>
-                        <span><?= esc($settings['contact_email'] ?? 'info@Samarthmultistate.com') ?></span>
+                        <span><?= esc($settings['contact_email'] ?? 'info@sainathmultistate.com') ?></span>
                     </p>
                     <p class="flex items-center space-x-2">
                         <span>☎️</span>

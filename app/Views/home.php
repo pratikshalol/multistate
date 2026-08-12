@@ -1,351 +1,407 @@
-﻿<?= $this->extend('layouts/main') ?>
+<?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
 
-<!-- 1. CAPTIVE HERO BANNER SLIDER -->
-<div class="relative bg-slate-900 text-white overflow-hidden shadow-xl border-b border-amber-500/20">
-    <div id="heroSlider" class="relative min-h-[460px] md:min-h-[520px] flex items-center">
+<!-- ════════════════════════════════════════════════════════
+     1. HERO BANNER SLIDER  — true CSS translate sliding
+     ════════════════════════════════════════════════════════ -->
+<style>
+    /* Slider viewport — clips the track */
+    #sliderViewport { overflow: hidden; position: relative; }
+
+    /* Track holds all slides side-by-side */
+    #sliderTrack {
+        display: flex;
+        width: 100%;
+        transition: transform 0.55s cubic-bezier(0.45, 0, 0.2, 1);
+        will-change: transform;
+    }
+
+    /* Each slide is exactly one viewport wide */
+    .slide-panel {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+</style>
+
+<div class="relative bg-white border-b border-slate-200" id="sliderViewport">
+
+    <!-- Track: all slides in a horizontal row -->
+    <div id="sliderTrack">
         <?php if (!empty($banners)): ?>
             <?php foreach ($banners as $index => $banner): ?>
-                <div class="banner-slide <?= $index === 0 ? 'active' : '' ?> w-full py-12 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto items-center grid grid-cols-1 md:grid-cols-12 gap-8">
-                    
-                    <?php if ($banner['image_position'] === 'left'): ?>
-                        <!-- Popping Image on Left -->
-                        <div class="md:col-span-6 flex justify-center order-2 md:order-1 relative group">
-                            <div class="absolute -inset-4 bg-gradient-to-r from-amber-500/30 to-brand-gold/30 rounded-3xl blur-xl transform group-hover:scale-105 transition-transform duration-500"></div>
-                            <div class="relative z-10 p-2 bg-gradient-to-tr from-brand-700 to-slate-800 rounded-2xl shadow-2xl border border-amber-500/30">
-                                <img src="<?= base_url($banner['image']) ?>" alt="Banner Graphic" class="w-full max-w-md h-auto object-contain transform md:-translate-y-2 drop-shadow-2xl">
+                <div class="slide-panel py-6 md:py-8">
+                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+
+                        <?php if ($banner['image_position'] === 'left'): ?>
+                            <!-- Image left -->
+                            <div class="order-2 md:order-1">
+                                <img src="<?= base_url($banner['image']) ?>" alt="<?= esc($banner['headline']) ?>"
+                                     class="w-full h-[280px] md:h-[400px] object-cover rounded-2xl shadow-lg">
                             </div>
-                        </div>
-
-                        <!-- Text Content on Right -->
-                        <div class="md:col-span-6 space-y-6 order-1 md:order-2">
-                            <span class="inline-flex items-center space-x-2 bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-full border border-amber-500/40 uppercase tracking-widest">
-                                <span>✨ Member First Banking</span>
-                            </span>
-                            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                                <?= esc($banner['headline']) ?>
-                            </h1>
-                            <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-xl">
-                                <?= esc($banner['subtext']) ?>
-                            </p>
-                            <?php if (!empty($banner['cta_text'])): ?>
-                                <div class="pt-2">
-                                    <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="inline-flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-                                        <span><?= esc($banner['cta_text']) ?></span>
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                    </a>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    <?php else: ?>
-                        <!-- Text Content on Left (Default) -->
-                        <div class="md:col-span-6 space-y-6">
-                            <span class="inline-flex items-center space-x-2 bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1.5 rounded-full border border-amber-500/40 uppercase tracking-widest">
-                                <span>🏆 Trusted Multistate Society</span>
-                            </span>
-                            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                                <?= esc($banner['headline']) ?>
-                            </h1>
-                            <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-xl">
-                                <?= esc($banner['subtext']) ?>
-                            </p>
-                            <?php if (!empty($banner['cta_text'])): ?>
-                                <div class="pt-2">
-                                    <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="inline-flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
-                                        <span><?= esc($banner['cta_text']) ?></span>
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                                    </a>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-
-                        <!-- Popping Image on Right -->
-                        <div class="md:col-span-6 flex justify-center relative group">
-                            <div class="absolute -inset-4 bg-gradient-to-r from-brand-gold/30 to-amber-500/30 rounded-3xl blur-xl transform group-hover:scale-105 transition-transform duration-500"></div>
-                            <div class="relative z-10 p-2 bg-gradient-to-tr from-brand-700 to-slate-800 rounded-2xl shadow-2xl border border-amber-500/30">
-                                <img src="<?= base_url($banner['image']) ?>" alt="Banner Graphic" class="w-full max-w-md h-auto object-contain transform md:-translate-y-2 drop-shadow-2xl">
+                            <!-- Text right -->
+                            <div class="order-1 md:order-2 flex flex-col justify-center space-y-4">
+                                <span class="inline-block bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-200 uppercase tracking-widest w-fit">Member-First Banking</span>
+                                <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight"><?= esc($banner['headline']) ?></h1>
+                                <p class="text-slate-500 text-sm md:text-base leading-relaxed"><?= esc($banner['subtext']) ?></p>
+                                <?php if (!empty($banner['cta_text'])): ?>
+                                    <div class="flex flex-wrap gap-3 pt-1">
+                                        <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors text-sm">
+                                            <?= esc($banner['cta_text']) ?>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                                        </a>
+                                        <a href="<?= base_url('contact') ?>" class="inline-flex items-center gap-2 border border-slate-300 text-slate-600 hover:border-brand-400 hover:text-brand-700 font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">Learn More</a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                        </div>
-                    <?php endif; ?>
 
+                        <?php else: ?>
+                            <!-- Text left -->
+                            <div class="flex flex-col justify-center space-y-4">
+                                <span class="inline-block bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-200 uppercase tracking-widest w-fit">Trusted Multistate Society</span>
+                                <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight"><?= esc($banner['headline']) ?></h1>
+                                <p class="text-slate-500 text-sm md:text-base leading-relaxed"><?= esc($banner['subtext']) ?></p>
+                                <?php if (!empty($banner['cta_text'])): ?>
+                                    <div class="flex flex-wrap gap-3 pt-1">
+                                        <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors text-sm">
+                                            <?= esc($banner['cta_text']) ?>
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                                        </a>
+                                        <a href="<?= base_url('contact') ?>" class="inline-flex items-center gap-2 border border-slate-300 text-slate-600 hover:border-brand-400 hover:text-brand-700 font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">Learn More</a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <!-- Image right -->
+                            <div>
+                                <img src="<?= base_url($banner['image']) ?>" alt="<?= esc($banner['headline']) ?>"
+                                     class="w-full h-[280px] md:h-[400px] object-cover rounded-2xl shadow-lg">
+                            </div>
+                        <?php endif; ?>
+
+                    </div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <!-- Fallback Slide -->
-            <div class="banner-slide active w-full py-16 px-8 max-w-7xl mx-auto text-center space-y-4">
-                <h1 class="text-4xl font-extrabold text-white">Welcome to Samarth Multistate Co-operative Credit Society</h1>
-                <p class="text-slate-300 max-w-2xl mx-auto">High return deposit plans, instant gold loans, and modern digital banking.</p>
-                <a href="<?= base_url('account-opening') ?>" class="inline-block bg-amber-500 text-slate-950 font-bold px-6 py-3 rounded-lg">Open Account Online</a>
+            <!-- Fallback when no banners -->
+            <div class="slide-panel py-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <span class="inline-block bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-200 uppercase tracking-widest">Trusted Multistate Society</span>
+                        <h1 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight">Your Trusted Co-operative Banking Partner</h1>
+                        <p class="text-slate-500 text-base leading-relaxed">High return deposit plans, instant gold loans, and modern digital banking.</p>
+                        <div class="flex flex-wrap gap-3 pt-1">
+                            <a href="<?= base_url('account-opening') ?>" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm text-sm">Open Account</a>
+                            <a href="<?= base_url('deposits') ?>" class="border border-slate-300 text-slate-600 hover:border-brand-400 hover:text-brand-700 font-semibold px-5 py-2.5 rounded-xl text-sm">View Deposits</a>
+                        </div>
+                    </div>
+                    <div class="hidden md:flex justify-center">
+                        <div class="w-full h-[360px] rounded-2xl bg-brand-50 border border-brand-100 flex items-center justify-center text-8xl">🏦</div>
+                    </div>
+                </div>
             </div>
         <?php endif; ?>
     </div>
 
-    <!-- Slider Navigation Dots -->
-    <?php if (count($banners) > 1): ?>
-        <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-20">
-            <?php foreach ($banners as $index => $banner): ?>
-                <button onclick="goToSlide(<?= $index ?>)" class="dot-btn w-3 h-3 rounded-full <?= $index === 0 ? 'bg-amber-400 w-8' : 'bg-slate-500' ?> transition-all duration-300"></button>
+    <!-- Dots nav -->
+    <?php if (!empty($banners) && count($banners) > 1): ?>
+        <div class="flex justify-center gap-2 py-4">
+            <?php foreach ($banners as $i => $_): ?>
+                <button onclick="sliderGoTo(<?= $i ?>)" id="dot-<?= $i ?>"
+                        class="h-2 rounded-full transition-all duration-300 <?= $i === 0 ? 'bg-brand-600 w-6' : 'bg-slate-300 w-2' ?>"></button>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+
+    <!-- Prev / Next arrows (only shown if >1 banner) -->
+    <?php if (!empty($banners) && count($banners) > 1): ?>
+        <button onclick="sliderPrev()" class="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white border border-slate-200 shadow rounded-full w-9 h-9 flex items-center justify-center text-slate-600 hover:text-brand-700 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button onclick="sliderNext()" class="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white border border-slate-200 shadow rounded-full w-9 h-9 flex items-center justify-center text-slate-600 hover:text-brand-700 transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+        </button>
+    <?php endif; ?>
 </div>
 
-<!-- 2. PROMINENT ONLINE ACCOUNT OPENING CTA BANNER -->
-<section class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 py-8 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="space-y-1 text-center md:text-left text-slate-950">
-            <h2 class="text-2xl md:text-3xl font-black tracking-tight">Open Your Co-operative Account Online in Minutes!</h2>
-            <p class="text-sm font-semibold text-slate-900/90">Enjoy up to 10.50% p.a. interest rates on deposits, mobile banking access, & doorstep agent services.</p>
+
+<!-- ════════════════════════════════════════════════════════
+     2. TRUST STATS BAR  — clean white, blue accent numbers
+     ════════════════════════════════════════════════════════ -->
+<section class="bg-white border-b border-slate-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" data-reveal-group>
+            <div class="space-y-1">
+                <div class="text-3xl md:text-4xl font-black text-brand-600">50,000+</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Satisfied Members</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl md:text-4xl font-black text-brand-600">&#8377; 250+ Cr</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Deposits</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl md:text-4xl font-black text-brand-600">10.50%</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Max FD Return Rate</div>
+            </div>
+            <div class="space-y-1">
+                <div class="text-3xl md:text-4xl font-black text-brand-600">15 Min</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Gold Loan Approval</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════
+     3. OPEN ACCOUNT CTA — subtle blue strip, not heavy
+     ════════════════════════════════════════════════════════ -->
+<section class="bg-brand-600 py-8" data-reveal>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-5">
+        <div class="text-center md:text-left space-y-1">
+            <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Open Your Co-operative Account Online — It Takes Under 5 Minutes</h2>
+            <p class="text-brand-200 text-sm">Earn up to 10.50% p.a. interest, get mobile banking access, and doorstep agent services.</p>
         </div>
         <div class="shrink-0">
-            <a href="<?= base_url('account-opening') ?>" class="inline-flex items-center space-x-2 bg-slate-950 hover:bg-slate-900 text-white font-black text-base px-7 py-3.5 rounded-xl shadow-xl hover:shadow-2xl transition-all transform hover:scale-105 border border-amber-300">
-                <span>Start Online Application</span>
-                <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            <a href="<?= base_url('account-opening') ?>" class="inline-flex items-center gap-2 bg-white hover:bg-brand-50 text-brand-700 font-black px-6 py-3 rounded-xl shadow transition-all">
+                Start Application
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
         </div>
     </div>
 </section>
 
-<!-- 3. QUICK METRIC STATS -->
-<section class="bg-white py-10 border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div class="text-3xl md:text-4xl font-black text-brand-700">50,000+</div>
-                <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">Satisfied Members</div>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div class="text-3xl md:text-4xl font-black text-amber-600">₹ 250+ Cr</div>
-                <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">Total Deposits</div>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div class="text-3xl md:text-4xl font-black text-brand-700">10.50%</div>
-                <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">Max FD Return Rate</div>
-            </div>
-            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 shadow-sm">
-                <div class="text-3xl md:text-4xl font-black text-emerald-700">15 Mins</div>
-                <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">Instant Gold Loan Approval</div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- 4. DEPOSIT SCHEMES SECTION -->
-<section class="py-16 bg-slate-50">
+<!-- ════════════════════════════════════════════════════════
+     4. DEPOSIT SCHEMES
+     ════════════════════════════════════════════════════════ -->
+<section class="py-20 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center space-y-2 mb-12">
-            <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">High Return Plans</span>
-            <h2 class="text-3xl font-extrabold text-slate-900">Featured Deposit Schemes</h2>
-            <p class="text-sm text-slate-600 max-w-xl mx-auto">Choose from flexible, guaranteed return deposit plans tailored for short-term and long-term financial growth.</p>
+        <div class="text-center mb-12" data-reveal>
+            <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-3">High Return Plans</span>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900">Featured Deposit Schemes</h2>
+            <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">Flexible, guaranteed-return deposit plans for short-term and long-term financial growth.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
             <?php foreach ($deposits as $plan): ?>
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
                     <div>
                         <div class="relative h-44 bg-slate-100">
                             <?php if (!empty($plan['image'])): ?>
-                                <img src="<?= base_url($plan['image']) ?>" alt="<?= esc($plan['name']) ?>" class="w-full h-full object-cover">
+                                <img src="<?= base_url($plan['image']) ?>" alt="<?= esc($plan['name']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                             <?php else: ?>
-                                <div class="w-full h-full bg-brand-600 flex items-center justify-center text-4xl">💰</div>
+                                <div class="w-full h-full bg-brand-50 flex items-center justify-center text-5xl">💰</div>
                             <?php endif; ?>
-                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded-md shadow">
+                            <span class="absolute top-3 right-3 bg-brand-600 text-white font-black text-xs px-2.5 py-1 rounded-lg shadow">
                                 <?= esc($plan['interest_rate']) ?>
                             </span>
                         </div>
                         <div class="p-5 space-y-3">
-                            <h3 class="font-bold text-lg text-slate-900 leading-snug"><?= esc($plan['name']) ?></h3>
-                            <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed"><?= esc($plan['short_description']) ?></p>
-                            <div class="text-xs space-y-1 pt-2 border-t border-slate-100 text-slate-700">
-                                <div class="flex justify-between">
-                                    <span class="text-slate-500">Min Deposit:</span>
-                                    <span class="font-bold"><?= esc($plan['min_amount']) ?></span>
+                            <h3 class="font-bold text-base text-slate-900 leading-snug"><?= esc($plan['name']) ?></h3>
+                            <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed"><?= esc($plan['short_description']) ?></p>
+                            <div class="text-xs space-y-1.5 pt-3 border-t border-slate-100">
+                                <div class="flex justify-between text-slate-600">
+                                    <span>Min Deposit</span>
+                                    <span class="font-bold text-slate-800"><?= esc($plan['min_amount']) ?></span>
                                 </div>
-                                <div class="flex justify-between">
-                                    <span class="text-slate-500">Tenure:</span>
-                                    <span class="font-bold"><?= esc($plan['tenure']) ?></span>
+                                <div class="flex justify-between text-slate-600">
+                                    <span>Tenure</span>
+                                    <span class="font-bold text-slate-800"><?= esc($plan['tenure']) ?></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="p-5 pt-0">
-                        <a href="<?= base_url('deposits/' . $plan['slug']) ?>" class="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-lg text-xs transition-colors">
+                    <div class="px-5 pb-5">
+                        <a href="<?= base_url('deposits/' . $plan['slug']) ?>" class="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
                             View Plan Details &rarr;
                         </a>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="text-center mt-10" data-reveal>
+            <a href="<?= base_url('deposits') ?>" class="inline-flex items-center gap-2 border border-brand-300 text-brand-600 hover:bg-brand-50 font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">
+                View All Deposit Plans
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- 5. LOAN PRODUCTS SECTION -->
-<section class="py-16 bg-white border-t border-slate-200">
+
+<!-- ════════════════════════════════════════════════════════
+     5. LOAN PRODUCTS
+     ════════════════════════════════════════════════════════ -->
+<section class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center space-y-2 mb-12">
-            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest bg-emerald-100 px-3 py-1 rounded-full">Hassle-Free Credit</span>
-            <h2 class="text-3xl font-extrabold text-slate-900">Loan Products & Assistance</h2>
-            <p class="text-sm text-slate-600 max-w-xl mx-auto">Instant financial support with minimal documentation and lowest interest rates.</p>
+        <div class="text-center mb-12" data-reveal>
+            <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-3">Hassle-Free Credit</span>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900">Loan Products &amp; Assistance</h2>
+            <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">Instant financial support with minimal documentation and the most competitive interest rates.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
             <?php foreach ($loans as $loan): ?>
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 flex flex-col justify-between hover:border-amber-400 transition-colors shadow-sm">
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 flex flex-col justify-between hover:border-brand-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
-                            <span class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold text-xl">🤝</span>
-                            <span class="bg-emerald-600 text-white text-[11px] font-bold px-2 py-0.5 rounded">
+                            <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-xl">🤝</div>
+                            <span class="bg-brand-600 text-white text-[11px] font-bold px-2.5 py-0.5 rounded-lg">
                                 <?= esc($loan['interest_rate']) ?>
                             </span>
                         </div>
                         <h3 class="font-bold text-base text-slate-900"><?= esc($loan['name']) ?></h3>
-                        <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed"><?= esc($loan['short_description']) ?></p>
-                        
-                        <div class="bg-white p-3 rounded-lg border border-slate-200 text-xs space-y-1">
-                            <div class="flex justify-between">
-                                <span class="text-slate-500">Max Valuation:</span>
-                                <span class="font-semibold text-slate-800"><?= esc($loan['max_percentage']) ?></span>
+                        <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed"><?= esc($loan['short_description']) ?></p>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 text-xs space-y-1.5">
+                            <div class="flex justify-between text-slate-600">
+                                <span>Max Valuation</span>
+                                <span class="font-bold text-slate-800"><?= esc($loan['max_percentage']) ?></span>
                             </div>
-                            <div class="flex justify-between">
-                                <span class="text-slate-500">Repayment:</span>
-                                <span class="font-semibold text-slate-800"><?= esc($loan['tenure']) ?></span>
+                            <div class="flex justify-between text-slate-600">
+                                <span>Repayment</span>
+                                <span class="font-bold text-slate-800"><?= esc($loan['tenure']) ?></span>
                             </div>
                         </div>
                     </div>
-
                     <div class="pt-4">
-                        <a href="<?= base_url('loans/' . $loan['slug']) ?>" class="block w-full text-center border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-bold py-2 rounded-lg text-xs transition-colors">
+                        <a href="<?= base_url('loans/' . $loan['slug']) ?>" class="block w-full text-center border border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white font-bold py-2.5 rounded-xl text-xs transition-all">
                             Apply / Details &rarr;
                         </a>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
+
+        <div class="text-center mt-10" data-reveal>
+            <a href="<?= base_url('loans') ?>" class="inline-flex items-center gap-2 border border-brand-300 text-brand-600 hover:bg-brand-50 font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">
+                View All Loan Products
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- 6. DIGITAL BANKING SERVICES -->
-<section class="py-16 bg-brand-900 text-white relative overflow-hidden">
-    <!-- Subtle decorative background rings -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden">
-        <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-brand-700/30 blur-3xl"></div>
-        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-brand-800/40 blur-3xl"></div>
+
+<!-- ════════════════════════════════════════════════════════
+     6. DIGITAL BANKING SERVICES — dark blue, clean cards
+     ════════════════════════════════════════════════════════ -->
+<section class="py-20 bg-brand-950 relative overflow-hidden">
+    <!-- Subtle background pattern -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-brand-800/30 rounded-full blur-3xl"></div>
     </div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center space-y-2 mb-12">
-            <span class="text-xs font-bold text-amber-400 uppercase tracking-widest bg-amber-400/10 border border-amber-400/30 px-3 py-1 rounded-full">Always On, Always Secure</span>
-            <h2 class="text-3xl font-extrabold text-white">Modern Digital Banking Services</h2>
-            <p class="text-sm text-brand-200 max-w-xl mx-auto">Access your accounts, transfer funds, and grow your savings — anytime, anywhere.</p>
+        <div class="text-center mb-12" data-reveal>
+            <span class="inline-block text-xs font-bold text-brand-300 uppercase tracking-widest bg-brand-800/60 border border-brand-700 px-3 py-1 rounded-full mb-3">Always On, Always Secure</span>
+            <h2 class="text-3xl md:text-4xl font-black text-white">Modern Digital Banking</h2>
+            <p class="text-brand-300 text-sm mt-3 max-w-xl mx-auto">Access your accounts, transfer funds, and grow your savings — anytime, anywhere.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Card 1 -->
-            <div class="bg-brand-800/60 border border-brand-700 rounded-2xl p-6 hover:border-amber-400/60 hover:bg-brand-800 transition-all group flex flex-col space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📱</div>
-                <div class="space-y-1.5">
-                    <h3 class="font-bold text-base text-white">Mobile Banking</h3>
-                    <p class="text-xs text-brand-200 leading-relaxed">24/7 fund transfers, e-passbook, mini statements & deposit tracking on your phone.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" data-reveal-group>
+            <div class="bg-brand-900/70 border border-brand-800 rounded-2xl p-6 hover:border-brand-500 hover:bg-brand-900 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-11 h-11 rounded-xl bg-brand-800 border border-brand-700 flex items-center justify-center text-2xl">📱</div>
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-1">Mobile Banking</h3>
+                    <p class="text-xs text-brand-300 leading-relaxed">24/7 fund transfers, e-passbook, mini statements &amp; deposit tracking.</p>
                 </div>
-                <a href="<?= base_url('page/mobile-internet-banking') ?>" class="inline-flex items-center text-xs font-semibold text-amber-400 hover:text-amber-300 space-x-1 mt-auto">
-                    <span>Learn More</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <a href="<?= base_url('page/mobile-internet-banking') ?>" class="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-400 hover:text-brand-200 transition-colors">
+                    Learn More <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
-
-            <!-- Card 2 -->
-            <div class="bg-brand-800/60 border border-brand-700 rounded-2xl p-6 hover:border-amber-400/60 hover:bg-brand-800 transition-all group flex flex-col space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">📲</div>
-                <div class="space-y-1.5">
-                    <h3 class="font-bold text-base text-white">QR Code Payments</h3>
-                    <p class="text-xs text-brand-200 leading-relaxed">Accept payments from all UPI apps directly into your society account — zero MDR charges.</p>
+            <div class="bg-brand-900/70 border border-brand-800 rounded-2xl p-6 hover:border-brand-500 hover:bg-brand-900 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-11 h-11 rounded-xl bg-brand-800 border border-brand-700 flex items-center justify-center text-2xl">📲</div>
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-1">QR Code Payments</h3>
+                    <p class="text-xs text-brand-300 leading-relaxed">Accept payments from all UPI apps with zero MDR charges.</p>
                 </div>
-                <a href="<?= base_url('page/qr-code-payments') ?>" class="inline-flex items-center text-xs font-semibold text-amber-400 hover:text-amber-300 space-x-1 mt-auto">
-                    <span>Get QR Standee</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <a href="<?= base_url('page/qr-code-payments') ?>" class="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-400 hover:text-brand-200 transition-colors">
+                    Get QR Standee <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
-
-            <!-- Card 3 -->
-            <div class="bg-brand-800/60 border border-brand-700 rounded-2xl p-6 hover:border-amber-400/60 hover:bg-brand-800 transition-all group flex flex-col space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🏠</div>
-                <div class="space-y-1.5">
-                    <h3 class="font-bold text-base text-white">Doorstep Banking</h3>
-                    <p class="text-xs text-brand-200 leading-relaxed">Our agents collect deposits and cash at your doorstep — perfect for farmers & senior members.</p>
+            <div class="bg-brand-900/70 border border-brand-800 rounded-2xl p-6 hover:border-brand-500 hover:bg-brand-900 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-11 h-11 rounded-xl bg-brand-800 border border-brand-700 flex items-center justify-center text-2xl">🏠</div>
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-1">Doorstep Banking</h3>
+                    <p class="text-xs text-brand-300 leading-relaxed">Agents collect deposits and cash at your doorstep — for farmers &amp; senior members.</p>
                 </div>
-                <a href="<?= base_url('contact') ?>" class="inline-flex items-center text-xs font-semibold text-amber-400 hover:text-amber-300 space-x-1 mt-auto">
-                    <span>Book a Visit</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <a href="<?= base_url('contact') ?>" class="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-400 hover:text-brand-200 transition-colors">
+                    Book a Visit <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
-
-            <!-- Card 4 -->
-            <div class="bg-brand-800/60 border border-brand-700 rounded-2xl p-6 hover:border-amber-400/60 hover:bg-brand-800 transition-all group flex flex-col space-y-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">🏢</div>
-                <div class="space-y-1.5">
-                    <h3 class="font-bold text-base text-white">Branch Network</h3>
-                    <p class="text-xs text-brand-200 leading-relaxed">Multiple branches across Maharashtra with trained staff ready to assist you personally.</p>
+            <div class="bg-brand-900/70 border border-brand-800 rounded-2xl p-6 hover:border-brand-500 hover:bg-brand-900 transition-all duration-300 flex flex-col gap-4">
+                <div class="w-11 h-11 rounded-xl bg-brand-800 border border-brand-700 flex items-center justify-center text-2xl">🏢</div>
+                <div>
+                    <h3 class="font-bold text-white text-sm mb-1">Branch Network</h3>
+                    <p class="text-xs text-brand-300 leading-relaxed">Multiple branches across Maharashtra with trained staff ready to assist.</p>
                 </div>
-                <a href="<?= base_url('branches') ?>" class="inline-flex items-center text-xs font-semibold text-amber-400 hover:text-amber-300 space-x-1 mt-auto">
-                    <span>Find a Branch</span>
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <a href="<?= base_url('branches') ?>" class="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-400 hover:text-brand-200 transition-colors">
+                    Find a Branch <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 7. NOTICES & ANNOUNCEMENTS TICKER / LIST -->
-<section class="py-12 bg-white border-b border-slate-200">
+
+<!-- ════════════════════════════════════════════════════════
+     7. NOTICES & ANNOUNCEMENTS
+     ════════════════════════════════════════════════════════ -->
+<section class="py-20 bg-white border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-xl font-bold text-slate-900 flex items-center space-x-2">
-                <span>📢</span>
-                <span>Latest Notices & Announcements</span>
-            </h2>
+        <div class="flex items-end justify-between mb-10" data-reveal>
+            <div>
+                <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-2">Notices</span>
+                <h2 class="text-2xl md:text-3xl font-black text-slate-900">Latest Notices &amp; Announcements</h2>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-group>
             <?php if (!empty($notices)): ?>
                 <?php foreach ($notices as $notice): ?>
-                    <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2 hover:shadow-sm transition-shadow">
-                        <div class="text-[11px] font-bold text-amber-600 uppercase">
-                            Published: <?= esc($notice['publish_date']) ?>
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 hover:shadow-sm hover:border-brand-200 transition-all">
+                        <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wide">
+                            <?= esc($notice['publish_date']) ?>
                         </div>
-                        <h3 class="font-bold text-sm text-slate-900 line-clamp-2"><?= esc($notice['title']) ?></h3>
-                        <p class="text-xs text-slate-600 line-clamp-3"><?= esc($notice['description']) ?></p>
+                        <h3 class="font-bold text-sm text-slate-900 leading-snug line-clamp-2"><?= esc($notice['title']) ?></h3>
+                        <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed"><?= esc($notice['description']) ?></p>
                         <?php if (!empty($notice['file_path'])): ?>
-                            <a href="<?= base_url($notice['file_path']) ?>" target="_blank" class="inline-flex items-center text-xs font-bold text-brand-600 hover:underline space-x-1 pt-1">
-                                <span>📄 Download Attachment</span>
+                            <a href="<?= base_url($notice['file_path']) ?>" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-800 transition-colors pt-1">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0119 9.414V19a2 2 0 01-2 2z"/></svg>
+                                Download Attachment
                             </a>
                         <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="text-xs text-slate-500">No active notices at this time.</p>
+                <div class="col-span-3 py-10 text-center text-slate-400 text-sm">No active notices at this time.</div>
             <?php endif; ?>
         </div>
     </div>
 </section>
 
-<!-- 8. TESTIMONIALS -->
-<section class="py-16 bg-slate-50">
+
+<!-- ════════════════════════════════════════════════════════
+     8. TESTIMONIALS
+     ════════════════════════════════════════════════════════ -->
+<section class="py-20 bg-slate-50 border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center space-y-2 mb-10">
-            <span class="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">Member Reviews</span>
-            <h2 class="text-3xl font-extrabold text-slate-900">What Our Members Say</h2>
+        <div class="text-center mb-12" data-reveal>
+            <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-3">Member Reviews</span>
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900">What Our Members Say</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-group>
             <?php foreach ($testimonials as $t): ?>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                    <div class="flex items-center space-x-1 text-amber-400 text-sm">
-                        <?php for($i=0; $i<($t['rating'] ?? 5); $i++): ?>★<?php endfor; ?>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col gap-4">
+                    <div class="flex gap-0.5">
+                        <?php for ($i = 0; $i < ($t['rating'] ?? 5); $i++): ?>
+                            <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <?php endfor; ?>
                     </div>
-                    <p class="text-xs text-slate-600 italic leading-relaxed">"<?= esc($t['message']) ?>"</p>
-                    <div class="flex items-center space-x-3 pt-2 border-t border-slate-100">
-                        <div class="w-9 h-9 rounded-full bg-brand-600 text-amber-400 font-bold flex items-center justify-center text-sm">
+                    <p class="text-sm text-slate-600 italic leading-relaxed flex-1">&ldquo;<?= esc($t['message']) ?>&rdquo;</p>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-100">
+                        <div class="w-9 h-9 rounded-full bg-brand-600 text-white font-bold flex items-center justify-center text-sm shrink-0">
                             <?= strtoupper(substr($t['name'], 0, 1)) ?>
                         </div>
                         <div>
@@ -359,40 +415,82 @@
     </div>
 </section>
 
-<!-- JavaScript Carousel Controller -->
+
+<!-- ════════════════════════════════════════════════════════
+     SLIDER JS — CSS translate-based, true sliding
+     ════════════════════════════════════════════════════════ -->
 <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.banner-slide');
-    const dots = document.querySelectorAll('.dot-btn');
+(function () {
+    const track  = document.getElementById('sliderTrack');
+    const panels = track ? track.querySelectorAll('.slide-panel') : [];
+    const total  = panels.length;
+    if (!track || total <= 1) return;
 
-    function showSlide(index) {
-        slides.forEach((s, i) => {
-            s.classList.remove('active');
-            if (dots[i]) {
-                dots[i].classList.remove('bg-amber-400', 'w-8');
-                dots[i].classList.add('bg-slate-500');
+    let current = 0;
+    let timer   = null;
+
+    function updateDots(idx) {
+        for (let i = 0; i < total; i++) {
+            const dot = document.getElementById('dot-' + i);
+            if (!dot) continue;
+            if (i === idx) {
+                dot.classList.remove('bg-slate-300', 'w-2');
+                dot.classList.add('bg-brand-600', 'w-6');
+            } else {
+                dot.classList.remove('bg-brand-600', 'w-6');
+                dot.classList.add('bg-slate-300', 'w-2');
             }
-        });
-        if (slides[index]) {
-            slides[index].classList.add('active');
         }
-        if (dots[index]) {
-            dots[index].classList.remove('bg-slate-500');
-            dots[index].classList.add('bg-amber-400', 'w-8');
-        }
-        currentSlide = index;
     }
 
-    function goToSlide(index) {
-        showSlide(index);
+    function goTo(idx) {
+        // Clamp to valid range — no wrapping
+        current = Math.max(0, Math.min(idx, total - 1));
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        updateDots(current);
     }
 
-    if (slides.length > 1) {
-        setInterval(() => {
-            let next = (currentSlide + 1) % slides.length;
-            showSlide(next);
-        }, 6000);
+    let direction = 1; // 1 = forward, -1 = backward
+
+    function startAuto() {
+        timer = setInterval(() => {
+            // Flip direction at the ends
+            if (current === total - 1) direction = -1;
+            if (current === 0)         direction =  1;
+            goTo(current + direction);
+        }, 2000);
     }
+
+    function stopAuto() {
+        clearInterval(timer);
+    }
+
+    // Expose for dot/arrow buttons
+    window.sliderGoTo = (i) => { stopAuto(); direction = (i > current ? 1 : -1); goTo(i); startAuto(); };
+    window.sliderNext = ()  => { stopAuto(); direction =  1; goTo(current + 1); startAuto(); };
+    window.sliderPrev = ()  => { stopAuto(); direction = -1; goTo(current - 1); startAuto(); };
+
+    // Pause on hover
+    const viewport = document.getElementById('sliderViewport');
+    if (viewport) {
+        viewport.addEventListener('mouseenter', stopAuto);
+        viewport.addEventListener('mouseleave', startAuto);
+    }
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    if (viewport) {
+        viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        viewport.addEventListener('touchend',   e => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) diff > 0 ? sliderNext() : sliderPrev();
+        }, { passive: true });
+    }
+
+    // Kick off
+    goTo(0);
+    startAuto();
+})();
 </script>
 
 <?= $this->endSection() ?>
