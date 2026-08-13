@@ -31,7 +31,7 @@ class SeedServicesData extends Migration
             [
                 'category'    => 'account',
                 'icon'        => '🏦',
-                'icon_color'  => 'bg-emerald-600',
+                'icon_color'  => 'bg-brand-600',
                 'title'       => 'Savings Account',
                 'description' => 'Earn attractive interest on your daily balance while keeping your money safe and accessible at all times.',
                 'features'    => "Competitive interest on daily balance\nFree passbook & SMS alerts\nNomination facility",
@@ -42,7 +42,7 @@ class SeedServicesData extends Migration
             [
                 'category'    => 'account',
                 'icon'        => '💼',
-                'icon_color'  => 'bg-sky-600',
+                'icon_color'  => 'bg-brand-800',
                 'title'       => 'Current Account',
                 'description' => 'Designed for traders and businesses requiring high-frequency transactions, overdraft, and multi-signatory support.',
                 'features'    => "Unlimited transactions\nOverdraft facility available\nUPI & QR code payments",
@@ -65,7 +65,7 @@ class SeedServicesData extends Migration
             [
                 'category'    => 'banking',
                 'icon'        => '📷',
-                'icon_color'  => 'bg-emerald-600',
+                'icon_color'  => 'bg-brand-600',
                 'title'       => 'QR Code Payments',
                 'description' => 'Accept or make instant payments using UPI-linked QR codes — fast, contactless, and compatible with all major payment apps.',
                 'features'    => "Instant UPI settlements\nWorks with PhonePe, GPay and more\nZero transaction charges",
@@ -76,7 +76,7 @@ class SeedServicesData extends Migration
             [
                 'category'    => 'banking',
                 'icon'        => '🏧',
-                'icon_color'  => 'bg-sky-600',
+                'icon_color'  => 'bg-brand-800',
                 'title'       => 'Branch Locator',
                 'description' => 'Find your nearest Samarth Multistate branch — address, working hours, phone numbers, and directions.',
                 'features'    => "All branches listed\nMap and directions\nWorking hours and contact info",

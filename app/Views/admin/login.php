@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Samarth Multistate</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <?= $this->include('partials/theme') ?>
 </head>
-<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4">
+<body class="bg-brand-950 min-h-screen flex items-center justify-center p-4">
 
     <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 space-y-6">
         
         <div class="text-center space-y-2">
-            <div class="w-12 h-12 bg-slate-900 rounded-full mx-auto flex items-center justify-center text-amber-400 font-extrabold text-2xl shadow">S</div>
+            <div class="w-12 h-12 bg-brand-600 rounded-full mx-auto flex items-center justify-center text-white font-extrabold text-2xl shadow">S</div>
             <h1 class="text-2xl font-black text-slate-900 tracking-tight">Samarth Admin Control</h1>
             <p class="text-xs text-slate-500 font-semibold">Sign in to manage society plans, applications, & settings</p>
         </div>
@@ -23,7 +23,7 @@
         <?php endif; ?>
 
         <?php if (session()->getFlashdata('success')): ?>
-            <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs p-3 rounded-lg font-bold">
+            <div class="bg-brand-50 border border-brand-200 text-brand-800 text-xs p-3 rounded-lg font-bold">
                 <?= session()->getFlashdata('success') ?>
             </div>
         <?php endif; ?>
@@ -32,16 +32,16 @@
             <?= csrf_field() ?>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Admin Email Address</label>
-                <input type="email" name="email" required value="<?= old('email', 'admin@sainathmultistate.com') ?>" placeholder="admin@sainathmultistate.com" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-slate-900 focus:outline-none">
+                <label class="form-label">Admin Email Address</label>
+                <input type="email" name="email" required value="<?= old('email', 'admin@sainathmultistate.com') ?>" placeholder="admin@sainathmultistate.com" class="form-input text-xs">
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
-                <input type="password" name="password" required value="Admin@123" placeholder="••••••••" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 text-xs focus:ring-2 focus:ring-slate-900 focus:outline-none">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" required value="Admin@123" placeholder="••••••••" class="form-input text-xs">
             </div>
 
-            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-xs transition-all shadow-lg">
+            <button type="submit" class="btn-admin w-full justify-center py-3 rounded-xl shadow-lg">
                 Log In to Admin Panel &rarr;
             </button>
         </form>

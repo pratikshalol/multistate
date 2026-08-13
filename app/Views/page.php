@@ -2,21 +2,21 @@
 
 <?= $this->section('content') ?>
 
-<!-- Page Header — clean, light, no solid blue -->
-<div class="bg-white border-b border-slate-200 py-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center gap-2 text-xs text-slate-400 mb-3">
-            <a href="<?= base_url() ?>" class="hover:text-brand-600 transition-colors">Home</a>
+<!-- Page Header -->
+<div class="page-hero">
+    <div class="section-inner">
+        <div class="flex items-center justify-center gap-2 text-xs text-brand-100 mb-3">
+            <a href="<?= base_url() ?>" class="hover:text-white transition-colors">Home</a>
             <span>/</span>
-            <span class="text-slate-600 font-semibold"><?= esc($page['title']) ?></span>
+            <span class="font-semibold text-white"><?= esc($page['title']) ?></span>
         </div>
-        <h1 class="text-3xl md:text-4xl font-black text-slate-900"><?= esc($page['title']) ?></h1>
+        <h1 class="page-hero-title"><?= esc($page['title']) ?></h1>
     </div>
 </div>
 
-<div class="py-12 bg-slate-50">
+<div class="section section-muted">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white p-6 md:p-10 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="ui-panel p-6 md:p-10">
             <div class="prose max-w-none text-sm md:text-base leading-relaxed text-slate-700
                         [&_h2]:text-2xl [&_h2]:font-black [&_h2]:text-slate-900 [&_h2]:mb-4 [&_h2]:mt-6
                         [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-slate-800 [&_h3]:mb-3 [&_h3]:mt-5

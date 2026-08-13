@@ -1,26 +1,26 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="bg-brand-700 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-        <h1 class="text-3xl md:text-4xl font-extrabold">High Return Deposit Schemes</h1>
+<div class="page-hero">
+    <div class="section-inner">
+        <h1 class="page-hero-title">High Return Deposit Schemes</h1>
             <p class="text-slate-500 text-sm max-w-xl mx-auto">Secure your capital and earn attractive interest rates with Samarth Multistate guaranteed deposit plans.</p>
     </div>
 </div>
 
-<div class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="section section-muted">
+    <div class="section-inner">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <?php foreach ($deposits as $plan): ?>
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
+                <div class="ui-card overflow-hidden flex flex-col justify-between">
                     <div>
                         <div class="relative h-48 bg-slate-100">
                             <?php if (!empty($plan['image'])): ?>
                                 <img src="<?= base_url($plan['image']) ?>" alt="<?= esc($plan['name']) ?>" class="w-full h-full object-cover">
                             <?php else: ?>
-                                <div class="w-full h-full bg-brand-700 flex items-center justify-center text-4xl">💰</div>
+                                <div class="w-full h-full bg-brand-600 flex items-center justify-center text-4xl">💰</div>
                             <?php endif; ?>
-                            <span class="absolute top-3 right-3 bg-amber-500 text-slate-950 font-black text-xs px-2.5 py-1 rounded-md shadow">
+                            <span class="absolute top-3 right-3 bg-brand-600 text-white font-black text-xs px-2.5 py-1 rounded-md shadow">
                                 <?= esc($plan['interest_rate']) ?>
                             </span>
                         </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="p-5 pt-0">
-                        <a href="<?= base_url('deposits/' . $plan['slug']) ?>" class="block w-full text-center bg-brand-700 hover:bg-brand-800 text-white font-bold py-2.5 rounded-lg text-xs transition-colors">
+                        <a href="<?= base_url('deposits/' . $plan['slug']) ?>" class="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
                             Explore Plan &rarr;
                         </a>
                     </div>

@@ -31,7 +31,7 @@
         <?php if (!empty($banners)): ?>
             <?php foreach ($banners as $index => $banner): ?>
                 <div class="slide-panel py-6 md:py-8">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
+                    <div class="section-inner grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center">
 
                         <?php if ($banner['image_position'] === 'left'): ?>
                             <!-- Image left -->
@@ -41,16 +41,16 @@
                             </div>
                             <!-- Text right -->
                             <div class="order-1 md:order-2 flex flex-col justify-center space-y-4">
-                                <span class="inline-block bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-200 uppercase tracking-widest w-fit">Member-First Banking</span>
+                                <span class="section-badge w-fit">Member-First Banking</span>
                                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight"><?= esc($banner['headline']) ?></h1>
                                 <p class="text-slate-500 text-sm md:text-base leading-relaxed"><?= esc($banner['subtext']) ?></p>
                                 <?php if (!empty($banner['cta_text'])): ?>
                                     <div class="flex flex-wrap gap-3 pt-1">
-                                        <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors text-sm">
+                                        <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="btn-primary shadow-sm">
                                             <?= esc($banner['cta_text']) ?>
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                                         </a>
-                                        <a href="<?= base_url('contact') ?>" class="inline-flex items-center gap-2 border border-slate-300 text-slate-600 hover:border-brand-400 hover:text-brand-700 font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">Learn More</a>
+                                        <a href="<?= base_url('contact') ?>" class="btn-outline">Learn More</a>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -58,16 +58,16 @@
                         <?php else: ?>
                             <!-- Text left -->
                             <div class="flex flex-col justify-center space-y-4">
-                                <span class="inline-block bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-200 uppercase tracking-widest w-fit">Trusted Multistate Society</span>
+                                <span class="section-badge w-fit">Trusted Multistate Society</span>
                                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-tight"><?= esc($banner['headline']) ?></h1>
                                 <p class="text-slate-500 text-sm md:text-base leading-relaxed"><?= esc($banner['subtext']) ?></p>
                                 <?php if (!empty($banner['cta_text'])): ?>
                                     <div class="flex flex-wrap gap-3 pt-1">
-                                        <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm transition-colors text-sm">
+                                        <a href="<?= base_url($banner['cta_link'] ?: 'account-opening') ?>" class="btn-primary shadow-sm">
                                             <?= esc($banner['cta_text']) ?>
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                                         </a>
-                                        <a href="<?= base_url('contact') ?>" class="inline-flex items-center gap-2 border border-slate-300 text-slate-600 hover:border-brand-400 hover:text-brand-700 font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm">Learn More</a>
+                                        <a href="<?= base_url('contact') ?>" class="btn-outline">Learn More</a>
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -84,14 +84,14 @@
         <?php else: ?>
             <!-- Fallback when no banners -->
             <div class="slide-panel py-8">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="section-inner grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                     <div class="space-y-4">
-                        <span class="inline-block bg-brand-50 text-brand-700 text-xs font-bold px-3 py-1 rounded-full border border-brand-200 uppercase tracking-widest">Trusted Multistate Society</span>
+                        <span class="section-badge">Trusted Multistate Society</span>
                         <h1 class="text-3xl md:text-5xl font-black text-slate-900 leading-tight">Your Trusted Co-operative Banking Partner</h1>
                         <p class="text-slate-500 text-base leading-relaxed">High return deposit plans, instant gold loans, and modern digital banking.</p>
                         <div class="flex flex-wrap gap-3 pt-1">
-                            <a href="<?= base_url('account-opening') ?>" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-sm text-sm">Open Account</a>
-                            <a href="<?= base_url('deposits') ?>" class="border border-slate-300 text-slate-600 hover:border-brand-400 hover:text-brand-700 font-semibold px-5 py-2.5 rounded-xl text-sm">View Deposits</a>
+                            <a href="<?= base_url('account-opening') ?>" class="btn-primary shadow-sm">Open Account</a>
+                            <a href="<?= base_url('deposits') ?>" class="btn-outline">View Deposits</a>
                         </div>
                     </div>
                     <div class="hidden md:flex justify-center">
@@ -127,8 +127,8 @@
 <!-- ════════════════════════════════════════════════════════
      2. TRUST STATS BAR  — clean white, blue accent numbers
      ════════════════════════════════════════════════════════ -->
-<section class="bg-white border-b border-slate-100 py-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="section section-light">
+    <div class="section-inner">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" data-reveal-group>
             <div class="space-y-1">
                 <div class="text-3xl md:text-4xl font-black text-brand-600">50,000+</div>
@@ -154,11 +154,11 @@
 <!-- ════════════════════════════════════════════════════════
      3. OPEN ACCOUNT CTA — subtle blue strip, not heavy
      ════════════════════════════════════════════════════════ -->
-<section class="bg-brand-600 py-8" data-reveal>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-5">
+<section class="section section-brand" data-reveal>
+    <div class="section-inner flex flex-col md:flex-row items-center justify-between gap-5">
         <div class="text-center md:text-left space-y-1">
             <h2 class="text-xl md:text-2xl font-black text-white tracking-tight">Open Your Co-operative Account Online — It Takes Under 5 Minutes</h2>
-            <p class="text-brand-200 text-sm">Earn up to 10.50% p.a. interest, get mobile banking access, and doorstep agent services.</p>
+            <p class="text-brand-100 text-sm">Earn up to 10.50% p.a. interest, get mobile banking access, and doorstep agent services.</p>
         </div>
         <div class="shrink-0">
             <a href="<?= base_url('account-opening') ?>" class="inline-flex items-center gap-2 bg-white hover:bg-brand-50 text-brand-700 font-black px-6 py-3 rounded-xl shadow transition-all">
@@ -173,17 +173,17 @@
 <!-- ════════════════════════════════════════════════════════
      4. DEPOSIT SCHEMES
      ════════════════════════════════════════════════════════ -->
-<section class="py-20 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-reveal>
-            <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-3">High Return Plans</span>
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900">Featured Deposit Schemes</h2>
-            <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">Flexible, guaranteed-return deposit plans for short-term and long-term financial growth.</p>
+<section class="section section-muted">
+    <div class="section-inner">
+        <div class="section-head" data-reveal>
+            <span class="section-badge">High Return Plans</span>
+            <h2 class="section-title">Featured Deposit Schemes</h2>
+            <p class="section-sub">Flexible, guaranteed-return deposit plans for short-term and long-term financial growth.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
             <?php foreach ($deposits as $plan): ?>
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                <div class="ui-card overflow-hidden flex flex-col justify-between group">
                     <div>
                         <div class="relative h-44 bg-slate-100">
                             <?php if (!empty($plan['image'])): ?>
@@ -220,7 +220,7 @@
         </div>
 
         <div class="text-center mt-10" data-reveal>
-            <a href="<?= base_url('deposits') ?>" class="inline-flex items-center gap-2 border border-brand-300 text-brand-600 hover:bg-brand-50 font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">
+            <a href="<?= base_url('deposits') ?>" class="btn-outline">
                 View All Deposit Plans
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
@@ -232,17 +232,17 @@
 <!-- ════════════════════════════════════════════════════════
      5. LOAN PRODUCTS
      ════════════════════════════════════════════════════════ -->
-<section class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-reveal>
-            <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-3">Hassle-Free Credit</span>
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900">Loan Products &amp; Assistance</h2>
-            <p class="text-slate-500 text-sm mt-3 max-w-xl mx-auto">Instant financial support with minimal documentation and the most competitive interest rates.</p>
+<section class="section section-light">
+    <div class="section-inner">
+        <div class="section-head" data-reveal>
+            <span class="section-badge">Hassle-Free Credit</span>
+            <h2 class="section-title">Loan Products &amp; Assistance</h2>
+            <p class="section-sub">Instant financial support with minimal documentation and the most competitive interest rates.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
             <?php foreach ($loans as $loan): ?>
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 p-5 flex flex-col justify-between hover:border-brand-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div class="ui-card p-5 flex flex-col justify-between">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-xl">🤝</div>
@@ -273,7 +273,7 @@
         </div>
 
         <div class="text-center mt-10" data-reveal>
-            <a href="<?= base_url('loans') ?>" class="inline-flex items-center gap-2 border border-brand-300 text-brand-600 hover:bg-brand-50 font-bold px-6 py-2.5 rounded-xl text-sm transition-colors">
+            <a href="<?= base_url('loans') ?>" class="btn-outline">
                 View All Loan Products
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
             </a>
@@ -285,17 +285,17 @@
 <!-- ════════════════════════════════════════════════════════
      6. DIGITAL BANKING SERVICES — dark blue, clean cards
      ════════════════════════════════════════════════════════ -->
-<section class="py-20 bg-brand-950 relative overflow-hidden">
+<section class="section section-dark relative overflow-hidden">
     <!-- Subtle background pattern -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-brand-800/30 rounded-full blur-3xl"></div>
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-reveal>
-            <span class="inline-block text-xs font-bold text-brand-300 uppercase tracking-widest bg-brand-800/60 border border-brand-700 px-3 py-1 rounded-full mb-3">Always On, Always Secure</span>
-            <h2 class="text-3xl md:text-4xl font-black text-white">Modern Digital Banking</h2>
-            <p class="text-brand-300 text-sm mt-3 max-w-xl mx-auto">Access your accounts, transfer funds, and grow your savings — anytime, anywhere.</p>
+    <div class="relative section-inner">
+        <div class="section-head" data-reveal>
+            <span class="section-badge">Always On, Always Secure</span>
+            <h2 class="section-title">Modern Digital Banking</h2>
+            <p class="section-sub">Access your accounts, transfer funds, and grow your savings — anytime, anywhere.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" data-reveal-group>
@@ -347,19 +347,18 @@
 <!-- ════════════════════════════════════════════════════════
      7. NOTICES & ANNOUNCEMENTS
      ════════════════════════════════════════════════════════ -->
-<section class="py-20 bg-white border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-end justify-between mb-10" data-reveal>
-            <div>
-                <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-2">Notices</span>
-                <h2 class="text-2xl md:text-3xl font-black text-slate-900">Latest Notices &amp; Announcements</h2>
-            </div>
+<section class="section section-light">
+    <div class="section-inner">
+        <div class="section-head" data-reveal>
+            <span class="section-badge">Notices</span>
+            <h2 class="section-title">Latest Notices &amp; Announcements</h2>
+            <p class="section-sub">Circulars, rate revisions, and society announcements for our members.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-group>
             <?php if (!empty($notices)): ?>
                 <?php foreach ($notices as $notice): ?>
-                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 hover:shadow-sm hover:border-brand-200 transition-all">
+                    <div class="ui-card p-6 space-y-3">
                         <div class="text-[11px] font-bold text-brand-600 uppercase tracking-wide">
                             <?= esc($notice['publish_date']) ?>
                         </div>
@@ -384,16 +383,17 @@
 <!-- ════════════════════════════════════════════════════════
      8. TESTIMONIALS
      ════════════════════════════════════════════════════════ -->
-<section class="py-20 bg-slate-50 border-t border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-reveal>
-            <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full mb-3">Member Reviews</span>
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900">What Our Members Say</h2>
+<section class="section section-muted">
+    <div class="section-inner">
+        <div class="section-head" data-reveal>
+            <span class="section-badge">Member Reviews</span>
+            <h2 class="section-title">What Our Members Say</h2>
+            <p class="section-sub">Real experiences from members who bank with us every day.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-group>
             <?php foreach ($testimonials as $t): ?>
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col gap-4">
+                <div class="ui-card p-6 flex flex-col gap-4">
                     <div class="flex gap-0.5">
                         <?php for ($i = 0; $i < ($t['rating'] ?? 5); $i++): ?>
                             <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>

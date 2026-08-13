@@ -5,36 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= esc($title ?? 'Samarth Multistate Co-operative Credit Society Ltd.') ?></title>
     <meta name="description" content="<?= esc($settings['meta_description'] ?? 'Samarth Multistate Co-operative Credit Society offers high return deposits, instant gold loans, mobile banking, and doorstep banking services.') ?>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50:  '#eff6ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                            950: '#172554',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Inter font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <?= $this->include('partials/theme') ?>
 
     <style>
         /* ─── Banner Slider ─────────────────────────────────── */
@@ -80,8 +51,8 @@
             white-space: nowrap;
         }
         .nav-dropdown-menu a:hover {
-            background: #eff6ff;
-            color: #1d4ed8;
+            background: var(--brand-50);
+            color: var(--brand-700);
         }
 
         /* ─── Scroll Reveal ─────────────────────────────────── */

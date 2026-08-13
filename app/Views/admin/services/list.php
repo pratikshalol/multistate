@@ -2,20 +2,20 @@
 
 <?= $this->section('content') ?>
 
-<div class="space-y-4">
-    <div class="flex items-center justify-between">
+<div class="admin-section">
+    <div class="admin-head">
         <div>
-            <h2 class="text-sm font-bold text-slate-700 uppercase tracking-wide"><?= esc($title) ?></h2>
+            <h2 class="admin-head-title"><?= esc($title) ?></h2>
             <p class="text-xs text-slate-500 mt-1">Manage the service cards shown on the public <?= $category === 'account' ? 'Accounts' : 'Banking' ?> page.</p>
         </div>
-        <a href="<?= base_url('admin/' . $category . '-services/create') ?>" class="bg-<?= $color ?>-600 hover:bg-<?= $color ?>-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all shadow">
+        <a href="<?= base_url('admin/' . $category . '-services/create') ?>" class="btn-admin shadow">
             + Add <?= $category === 'account' ? 'Account Service' : 'Banking Service' ?>
         </a>
     </div>
 
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+    <div class="admin-panel">
         <table class="w-full text-left text-xs">
-            <thead class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200 uppercase">
+            <thead class="admin-table-head">
                 <tr>
                     <th class="p-4">Icon</th>
                     <th class="p-4">Title</th>
@@ -44,13 +44,13 @@
                             <td class="p-4 text-slate-600 max-w-sm truncate"><?= esc($service['description']) ?></td>
                             <td class="p-4 text-slate-600"><?= esc($service['sort_order']) ?></td>
                             <td class="p-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-bold <?= $service['is_active'] ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-500' ?>">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-bold <?= $service['is_active'] ? 'bg-brand-100 text-brand-800' : 'bg-slate-100 text-slate-500' ?>">
                                     <?= $service['is_active'] ? 'ACTIVE' : 'INACTIVE' ?>
                                 </span>
                             </td>
                             <td class="p-4 text-right space-x-2">
-                                <a href="<?= base_url('admin/services/edit/' . $service['id']) ?>" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-1.5 rounded-md text-[11px]">Edit</a>
-                                <button onclick="confirmDelete('<?= base_url('admin/services/delete/' . $service['id']) ?>')" class="bg-red-50 hover:bg-red-100 text-red-600 font-bold px-3 py-1.5 rounded-md text-[11px]">Delete</button>
+                                <a href="<?= base_url('admin/services/edit/' . $service['id']) ?>" class="btn-row">Edit</a>
+                                <button onclick="confirmDelete('<?= base_url('admin/services/delete/' . $service['id']) ?>')" class="btn-row-danger">Delete</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

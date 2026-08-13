@@ -1,23 +1,23 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content') ?>
-<div class="bg-brand-700 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-        <h1 class="text-3xl md:text-4xl font-extrabold">Contact Us & Enquiries</h1>
-        <p class="text-slate-300 text-sm max-w-xl mx-auto">Have questions regarding deposit plans, loan applications, or mobile banking? Send us a message.</p>
+<div class="page-hero">
+    <div class="section-inner">
+        <h1 class="page-hero-title">Contact Us & Enquiries</h1>
+        <p class="text-brand-100 text-sm max-w-xl mx-auto">Have questions regarding deposit plans, loan applications, or mobile banking? Send us a message.</p>
     </div>
 </div>
 
-<div class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<div class="section section-muted">
+    <div class="section-inner grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         <!-- Form Column -->
         <div class="lg:col-span-7">
-            <div class="bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="ui-panel p-6 md:p-8 space-y-6">
                 <h2 class="text-xl font-bold text-slate-900 border-b border-slate-100 pb-3">Send Your Message / Enquiry</h2>
 
                 <?php if (session()->getFlashdata('success')): ?>
-                    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs p-4 rounded-xl font-bold">
+                    <div class="bg-brand-50 border border-brand-200 text-brand-800 text-xs p-4 rounded-xl font-bold">
                         <?= session()->getFlashdata('success') ?>
                     </div>
                 <?php endif; ?>
@@ -77,7 +77,7 @@
                     </p>
                     <p class="flex items-center space-x-2">
                         <span>📞</span>
-                        <span class="font-bold text-amber-400"><?= esc($settings['contact_phone'] ?? '+91 020 2553 9000') ?></span>
+                        <span class="font-bold text-brand-300"><?= esc($settings['contact_phone'] ?? '+91 020 2553 9000') ?></span>
                     </p>
                     <p class="flex items-center space-x-2">
                         <span>✉️</span>
@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+            <div class="ui-panel p-6 space-y-3">
                 <h3 class="font-bold text-sm text-slate-900">Branch Office Locations</h3>
                 <div class="space-y-2 text-xs text-slate-600">
                     <?php foreach ($branches as $b): ?>

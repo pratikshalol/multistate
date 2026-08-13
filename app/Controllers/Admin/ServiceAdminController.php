@@ -9,8 +9,8 @@ class ServiceAdminController extends BaseController
 {
     /** Categories this controller is allowed to manage, and their labels/colors. */
     private array $categories = [
-        'account' => ['label' => 'Account Services', 'color' => 'emerald'],
-        'banking' => ['label' => 'Banking Services', 'color' => 'sky'],
+        'account' => ['label' => 'Account Services', 'color' => 'brand'],
+        'banking' => ['label' => 'Banking Services', 'color' => 'brand'],
     ];
 
     private function guardCategory(string $category): string

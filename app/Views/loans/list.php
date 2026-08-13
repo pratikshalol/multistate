@@ -3,20 +3,20 @@
 <?= $this->section('content') ?>
 
 <!-- Page Header -->
-<div class="bg-white border-b border-slate-200 py-12" data-reveal>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-        <span class="inline-block text-xs font-bold text-brand-600 uppercase tracking-widest bg-brand-50 border border-brand-200 px-3 py-1 rounded-full">Hassle-Free Credit</span>
-        <h1 class="text-3xl md:text-4xl font-black text-slate-900">Loan Products &amp; Credit Services</h1>
-        <p class="text-slate-500 text-sm max-w-xl mx-auto">Fast approval, minimum paperwork, and transparent interest rates for all your credit needs.</p>
+<div class="page-hero" data-reveal>
+    <div class="section-inner">
+        <span class="section-badge">Hassle-Free Credit</span>
+        <h1 class="page-hero-title">Loan Products &amp; Credit Services</h1>
+        <p>Fast approval, minimum paperwork, and transparent interest rates for all your credit needs.</p>
     </div>
 </div>
 
 <!-- Loans Grid -->
-<div class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="section section-muted">
+    <div class="section-inner">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
             <?php foreach ($loans as $loan): ?>
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:border-brand-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div class="ui-card p-5 flex flex-col justify-between">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <div class="w-10 h-10 rounded-xl bg-brand-50 border border-brand-100 flex items-center justify-center text-xl">🤝</div>

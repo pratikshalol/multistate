@@ -3,21 +3,21 @@
 <?= $this->section('content') ?>
 
 <!-- Hero -->
-<div class="bg-brand-700 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
-        <h1 class="text-3xl md:text-4xl font-extrabold"><?= esc($page['title']) ?></h1>
+<div class="page-hero">
+    <div class="section-inner">
+        <h1 class="page-hero-title"><?= esc($page['title']) ?></h1>
     </div>
 </div>
 
 <!-- Banking Cards -->
-<div class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="section section-muted">
+    <div class="section-inner">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             <!-- Mobile & Net Banking -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="ui-card overflow-hidden flex flex-col justify-between">
                 <div>
-                    <div class="h-48 bg-violet-600 flex items-center justify-center text-6xl">📱</div>
+                    <div class="h-48 bg-brand-600 flex items-center justify-center text-6xl">📱</div>
                     <div class="p-6 space-y-3">
                         <h2 class="font-bold text-xl text-slate-900">Mobile & Net Banking</h2>
                         <p class="text-sm text-slate-600 leading-relaxed">Access your account, transfer funds, check balances, and pay bills from your smartphone or desktop — 24/7.</p>
@@ -29,16 +29,16 @@
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="<?= base_url('page/mobile-internet-banking') ?>" class="block w-full text-center bg-brand-700 hover:bg-brand-800 text-white font-bold py-2.5 rounded-lg text-xs transition-colors">
+                    <a href="<?= base_url('page/mobile-internet-banking') ?>" class="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
                         Learn More &rarr;
                     </a>
                 </div>
             </div>
 
             <!-- QR Code Payments -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="ui-card overflow-hidden flex flex-col justify-between">
                 <div>
-                    <div class="h-48 bg-amber-500 flex items-center justify-center text-6xl">📲</div>
+                    <div class="h-48 bg-brand-600 flex items-center justify-center text-6xl">📲</div>
                     <div class="p-6 space-y-3">
                         <h2 class="font-bold text-xl text-slate-900">QR Code Payments</h2>
                         <p class="text-sm text-slate-600 leading-relaxed">Accept or make instant payments using UPI-linked QR codes — fast, contactless, and compatible with all major payment apps.</p>
@@ -50,16 +50,16 @@
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="<?= base_url('page/qr-code-payments') ?>" class="block w-full text-center bg-brand-700 hover:bg-brand-800 text-white font-bold py-2.5 rounded-lg text-xs transition-colors">
+                    <a href="<?= base_url('page/qr-code-payments') ?>" class="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
                         Learn More &rarr;
                     </a>
                 </div>
             </div>
 
             <!-- Branch Locator -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="ui-card overflow-hidden flex flex-col justify-between">
                 <div>
-                    <div class="h-48 bg-rose-600 flex items-center justify-center text-6xl">📍</div>
+                    <div class="h-48 bg-brand-600 flex items-center justify-center text-6xl">📍</div>
                     <div class="p-6 space-y-3">
                         <h2 class="font-bold text-xl text-slate-900">Branch Locator</h2>
                         <p class="text-sm text-slate-600 leading-relaxed">Find your nearest Samarth Multistate branch, get address, working hours, phone numbers, and directions on the map.</p>
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="p-6 pt-0">
-                    <a href="<?= base_url('branches') ?>" class="block w-full text-center bg-brand-700 hover:bg-brand-800 text-white font-bold py-2.5 rounded-lg text-xs transition-colors">
+                    <a href="<?= base_url('branches') ?>" class="block w-full text-center bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 rounded-xl text-xs transition-colors">
                         Find a Branch &rarr;
                     </a>
                 </div>
